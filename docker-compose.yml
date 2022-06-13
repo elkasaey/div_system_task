@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+      pgdb:
+        image: postgres
+        volumes:
+          - ./data/db:/var/lib/postgresql/data
+        container_name: pgdb
+        environment:
+          - POSTGRES_DB=db
+          - POSTGRES_USER=user
+          - POSTGRES_PASSWORD=password
+      django:
+        build: .
+        container_name: django
+        command: python manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/code
+            - media:/code/media/
+        ports:
+            - "8000:8000"
+        depends_on:
+            - pgdb
+
+volumes:
+  media:
