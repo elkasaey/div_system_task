@@ -2,7 +2,7 @@
   * docker-compose up --build -d
 
 # Migrate databases
- * docker exec -t django sh
+ * docker exec -it django sh
  * python manage.py makemigrations
  * python manage.py Migrate
 
@@ -28,4 +28,4 @@
     }  
 # Get all User with Auth
   * http://localhost:8000/api/v1/user GET
-  * header request Bearer token 
+  * header request Bearer token
